@@ -1,0 +1,74 @@
+{
+  "tools": [
+    {
+      "name": "memory_thinking",
+      "description": "A tool for sequential thinking with memory retrieval and storage. Use this for complex problem-solving that benefits from persistent context and structured thinking.",
+      "execution": {
+        "command": "node",
+        "args": ["PATH_TO_SERVERS/src/memory-thinking/dist/index.js"]
+      },
+      "schema": {
+        "type": "object",
+        "properties": {
+          "thought": {
+            "type": "string",
+            "description": "The current thinking step"
+          },
+          "nextThoughtNeeded": {
+            "type": "boolean",
+            "description": "Whether another thought step is needed"
+          },
+          "thoughtNumber": {
+            "type": "integer",
+            "description": "Current thought number"
+          },
+          "totalThoughts": {
+            "type": "integer",
+            "description": "Estimated total thoughts needed"
+          },
+          "isRevision": {
+            "type": "boolean",
+            "description": "Whether this revises previous thinking"
+          },
+          "revisesThought": {
+            "type": "integer",
+            "description": "Which thought is being reconsidered"
+          },
+          "branchFromThought": {
+            "type": "integer",
+            "description": "Branching point thought number"
+          },
+          "branchId": {
+            "type": "string",
+            "description": "Branch identifier"
+          },
+          "needsMoreThoughts": {
+            "type": "boolean",
+            "description": "If more thoughts are needed"
+          },
+          "context": {
+            "type": "string",
+            "description": "Context or topic for memory retrieval"
+          },
+          "storeInMemory": {
+            "type": "boolean",
+            "description": "Whether to store this thinking process in memory"
+          },
+          "retrieveFromMemory": {
+            "type": "boolean",
+            "description": "Whether to retrieve relevant context from memory"
+          }
+        },
+        "required": ["thought", "nextThoughtNeeded", "thoughtNumber", "totalThoughts"]
+      }
+    }
+  ],
+  "env": {
+    "MEMORY_FILE_PATH": "~/.memory-thinking/memory.json",
+    "THINKING_FILE_PATH": "~/.memory-thinking/thinking.json"
+  },
+  "initialization": {
+    "command": "node",
+    "args": ["PATH_TO_SERVERS/src/memory-thinking/cursor-integration.js"]
+  }
+} 
